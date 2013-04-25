@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-public class Main {
-	public static void main(String[] argv) {
-		System.out.println(new NiceGuy().sayHi());
+public class NiceGuy {
+	public String sayHi() {
+		return "Bonjour!";
 	}
 }
