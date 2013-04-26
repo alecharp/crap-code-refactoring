@@ -39,4 +39,10 @@ public class NiceGuyTest {
 	public void unknownLocale() {
 		assertThat("Au revoir!").isEqualTo(new NiceGuy("etps").sayHi());
 	}
+
+	@Test
+	public void sayHiUS() {
+		assertThat("Au revoir!").isNotEqualTo(new NiceGuy("us").sayHi());
+		assertThat("Hi motherfucker!").isEqualTo(new NiceGuy("us").sayHi());
+	}
 }

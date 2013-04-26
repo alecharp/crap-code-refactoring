@@ -26,6 +26,9 @@ public class NiceGuy {
 		if (locale == null || "fr_FR".equals(locale) || "fr".equalsIgnoreCase(locale)) {
 			return "Bonjour!";
 		}
+		if ("en_US".equals(locale) || "us".equalsIgnoreCase(locale)) {
+			return "Hi motherfucker!";
+		}
 		throw new IllegalStateException("The locale is not recognized");
 	}
 }
