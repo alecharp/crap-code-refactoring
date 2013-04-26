@@ -15,7 +15,7 @@
  */
 
 public class Main {
-	public static void main(String[] argv) {
-		System.out.println(new NiceGuy(argv[0]).sayHi());
+	public static void main(String[] argv) throws Exception {
+		System.out.println(new NiceGuyManager().forLocale(argv[0]).sayHi());
 	}
 }

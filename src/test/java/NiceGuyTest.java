@@ -14,35 +14,25 @@
  * limitations under the License.
  */
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NiceGuyTest {
-
 	@Test
-	public void sayHi() {
-		assertThat("Bonjour!").isEqualTo(new NiceGuy().sayHi());
+	public void sayHi() throws Exception {
+		assertThat("Bonjour!").isEqualTo(new FrenchNiceGuy().sayHi());
 	}
 
 	@Test
-	public void sayHiFR() {
-		assertThat("Bonjour!").isEqualTo(new NiceGuy("fr").sayHi());
+	public void notSayingHi() throws Exception {
+		assertThat("Au revoir!").isNotEqualTo(new FrenchNiceGuy().sayHi());
 	}
 
 	@Test
-	public void notSayingHi() {
-		assertThat("Au revoir!").isNotEqualTo(new NiceGuy().sayHi());
-	}
-
-	@Test(expected = IllegalStateException.class)
-	public void unknownLocale() {
-		assertThat("Au revoir!").isEqualTo(new NiceGuy("etps").sayHi());
-	}
-
-	@Test
-	public void sayHiUS() {
-		assertThat("Au revoir!").isNotEqualTo(new NiceGuy("us").sayHi());
-		assertThat("Hi motherfucker!").isEqualTo(new NiceGuy("us").sayHi());
+	public void sayHiUS() throws Exception {
+		assertThat("Au revoir!").isNotEqualTo(new AmericanNotSoNiceGuy().sayHi());
+		assertThat("Hi motherfucker!").isEqualTo(new AmericanNotSoNiceGuy().sayHi());
 	}
 }
