@@ -15,7 +15,17 @@
  */
 
 public class NiceGuy {
+	private final String locale;
+
+	public NiceGuy() { this(null); }
+	public NiceGuy(String locale) {
+		this.locale = locale;
+	}
+
 	public String sayHi() {
-		return "Bonjour!";
+		if (locale == null || "fr_FR".equals(locale) || "fr".equalsIgnoreCase(locale)) {
+			return "Bonjour!";
+		}
+		throw new IllegalStateException("The locale is not recognized");
 	}
 }

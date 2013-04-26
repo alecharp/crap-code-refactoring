@@ -26,7 +26,17 @@ public class NiceGuyTest {
 	}
 
 	@Test
+	public void sayHiFR() {
+		assertThat("Bonjour!").isEqualTo(new NiceGuy("fr").sayHi());
+	}
+
+	@Test
 	public void notSayingHi() {
 		assertThat("Au revoir!").isNotEqualTo(new NiceGuy().sayHi());
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void unknownLocale() {
+		assertThat("Au revoir!").isEqualTo(new NiceGuy("etps").sayHi());
 	}
 }

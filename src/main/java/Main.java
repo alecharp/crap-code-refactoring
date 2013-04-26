@@ -16,6 +16,6 @@
 
 public class Main {
 	public static void main(String[] argv) {
-		System.out.println(new NiceGuy().sayHi());
+		System.out.println(new NiceGuy(argv[0]).sayHi());
 	}
 }
