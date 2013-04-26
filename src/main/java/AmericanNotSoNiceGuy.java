@@ -20,4 +20,7 @@ public class AmericanNotSoNiceGuy implements NiceGuy {
 	public String sayHi() {
 		return "Hi motherfucker!";
 	}
+
+	@Override
+	public String getLocale() { return "us"; }
 }

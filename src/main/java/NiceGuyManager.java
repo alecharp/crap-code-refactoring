@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-import java.io.IOException;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.ServiceConfigurationError;
+import java.util.ServiceLoader;
 
 public class NiceGuyManager {
-	private final Properties gentlemen = new Properties();
-	public NiceGuyManager() throws IOException {
-		this.gentlemen.load(NiceGuyManager.class.getResourceAsStream("/languages.properties"));
+	private final Map<String, NiceGuy> gentlemen = new HashMap<String, NiceGuy>();
+
+	public NiceGuyManager() {
+		ServiceLoader<NiceGuy> gentlemenServiceLoader = ServiceLoader.load(NiceGuy.class);
+        Iterator<NiceGuy> iterator = gentlemenServiceLoader.iterator();
+        for (NiceGuy gentleman; iterator.hasNext(); ) {
+            try {
+                gentleman = iterator.next();
+                gentlemen.put(gentleman.getLocale(), gentleman);
+            } catch (ServiceConfigurationError error) {
+            	// can be logged
+            }
+        }
 	}
 	
 	public boolean isLanguageSpeaken(String language) {
@@ -28,11 +41,13 @@ public class NiceGuyManager {
 	}
 	
 	public NiceGuy forLocale(String language)
-			throws ClassNotFoundException, IllegalAccessException, InstantiationException { 
-		if (!isLanguageSpeaken(language)) {
-			throw new ClassNotFoundException(String.format("The language %s is not recognized", language));
-		}
-		return (NiceGuy) Class.forName(gentlemen.get(language).toString()).newInstance();
+			throws ClassNotFoundException {
+		NiceGuy gentleman = gentlemen.get(language);
+        if (gentleman == null) {
+            throw new ClassNotFoundException(String.format("There is no class that can manage the language %s",
+                    language));
+        }
+        return gentleman;
 	}
 
 }

@@ -20,4 +20,7 @@ public class FrenchNiceGuy implements NiceGuy {
 	public String sayHi() {
 		return "Bonjour!";
 	}
+
+	@Override
+	public String getLocale() { return "fr"; }
 }

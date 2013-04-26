@@ -16,4 +16,5 @@
 
 public interface NiceGuy {
 	String sayHi();
+	String getLocale();
 }
