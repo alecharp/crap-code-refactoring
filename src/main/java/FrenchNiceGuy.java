@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
-public interface NiceGuy {
-	String sayHi();
+public class FrenchNiceGuy implements NiceGuy {
+
+	@Override
+	public String sayHi() {
+		return "Bonjour!";
+	}
 }
